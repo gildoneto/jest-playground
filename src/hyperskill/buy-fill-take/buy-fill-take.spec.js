@@ -3,7 +3,8 @@ const {
   arrangeInventory, 
   getInventory, 
   buyCoffee,
-  takeMoney, 
+  takeMoney,
+  resetInventory,
   COFFEE
 } = require("./buy-fill-take.js");
 
@@ -63,8 +64,8 @@ describe('Cost and necessary inputs', () => {
 });
 
 describe('Inputs from machine', () => {
-  beforeEach(() => {
-    jest.resetModules();
+  afterEach(() => {
+    resetInventory();
   })
   it('should decrease correctly when user buys an espresso', () => {
     expect(buyCoffee(COFFEE[1])).toEqual({
@@ -73,31 +74,28 @@ describe('Inputs from machine', () => {
       beans: 104,
       cups: 8,
       money: 554
-    })
+    });
   });
   it('should decrease when user buys a latte', () => {
     expect(buyCoffee(COFFEE[2])).toEqual({
-      water: -200,
+      water: 50,
       milk: 465,
-      beans: 84,
-      cups: 7,
-      money: 561
-    })
+      beans: 100,
+      cups: 8,
+      money: 557
+    });
   });
   it('should decrease when user buys a cappuccino', () => {
     expect(buyCoffee(COFFEE[3])).toEqual({
-      water: -400,
-      milk: 365,
-      beans: 72,
-      cups: 6,
-      money: 567
-    })
+      water: 200,
+      milk: 440,
+      beans: 108,
+      cups: 8,
+      money: 556
+    });
   });
-  it('should have $567 of money', () => {
-    expect(takeMoney()).toBe(567);
-  });
-  it('should have $0 of money', () => {
+  it('should have $550 of money', () => {
+    expect(takeMoney()).toBe(550);
     expect(getInventory().money).toBe(0);
   });
 });
-

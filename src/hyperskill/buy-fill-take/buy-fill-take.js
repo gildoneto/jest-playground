@@ -23,6 +23,15 @@ const inventory = {
   money: 550
 }
 
+const resetInventory = () => {
+  inventory.water = 400;
+  inventory.milk = 540;
+  inventory.beans = 120;
+  inventory.cups = 9;
+  inventory.money = 550;
+  return inventory;
+}
+
 const COFFEE = {
   1: { // espresso
     water: 250,
@@ -120,12 +129,13 @@ const askAction = () => {
   }
 }
 
-askAction();
+// askAction();
 
 module.exports = {
   getInventory, 
   arrangeInventory,
   buyCoffee,
   takeMoney,
+  resetInventory,
   COFFEE
 };
