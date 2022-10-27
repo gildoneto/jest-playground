@@ -1,20 +1,6 @@
 /* eslint-disable no-case-declarations */
 const prompt = require('prompt-sync')();
 
-const ASK = {
-  DEFAULT: "Write action (buy, fill, take): ",
-  BUY : {
-    OPTIONS: "What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino: ",
-  },
-  FILL: {
-    WATER: "Write how many ml of water you want to add: ",
-    MILK: "Write how many ml of milk you want to add: ",
-    BEANS: "Write how many grams of coffee beans you want to add: ",
-    CUPS: "Write how many disposable cups you want to add: "
-  },
-  TAKE_QUESTION: "I gave you $"
-}
-
 const inventory = {
   water: 400,
   milk: 540,
@@ -30,6 +16,20 @@ const resetInventory = () => {
   inventory.cups = 9;
   inventory.money = 550;
   return inventory;
+}
+
+const ASK = {
+  DEFAULT: "Write action (buy, fill, take): ",
+  BUY : {
+    OPTIONS: "What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino: ",
+  },
+  FILL: {
+    WATER: "Write how many ml of water you want to add: ",
+    MILK: "Write how many ml of milk you want to add: ",
+    BEANS: "Write how many grams of coffee beans you want to add: ",
+    CUPS: "Write how many disposable cups you want to add: "
+  },
+  TAKE_QUESTION: "I gave you $"
 }
 
 const COFFEE = {
@@ -54,17 +54,17 @@ const COFFEE = {
 }
 
 const getInventory = () => {
-  return inventory
+  return inventory;
 }
 
-const arrangeInventory = (inputs) => {
-  const {water, milk, beans, cups, money} = inputs;
+function arrangeInventory(inputs) {
+  const { water, milk, beans, cups, money } = inputs;
   return `The coffee machine has:
 ${water} ml of water
 ${milk} ml of milk
 ${beans} g of coffee beans
 ${cups} disposable cups
-$${money} of money`
+$${money} of money`;
 }
 
 const buyCoffee = (coffee) => {
@@ -129,6 +129,7 @@ const askAction = () => {
   }
 }
 
+// console.log(arrangeInventory(getInventory()) + '\n');
 // askAction();
 
 module.exports = {
